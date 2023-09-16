@@ -1,0 +1,14 @@
+@Override
+public List<Employee> getAllEmployees() {
+    List<EmployeeEntity> employeeEntityList = employeeRepository.findAll();
+
+    List<Employee> employees = employeeEntityList
+            .stream()
+            .map(n->new Employee(
+                    n.getId(),
+                    n.getFirstName(),
+                    n.getLastName(),
+                    n.getEmail()))
+            .collect(Collectors.toList());
+    return employees;
+}
